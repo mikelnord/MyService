@@ -14,7 +14,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.startIntentServiceButton.setOnClickListener{
-            SysIntentService.startToastJob(this,10)
+            SysIntentService.startService(this,10)
+        }
+
+        binding.startMyIntentServiceButton.setOnClickListener {
+            MySysIntentService.startMyService(this,10)
         }
 
     }

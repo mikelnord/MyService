@@ -15,11 +15,11 @@ class SysIntentService : IntentService("SysIntentService") {
     companion object {
         private const val SYS_KEY = "SYS_KEY"
 
-        fun startToastJob(context: Context, counter: Int) {
+        fun startService(context: Context, counter: Int) {
             val serviceIntent = Intent(context, SysIntentService::class.java)
             serviceIntent.putExtra(SYS_KEY, counter)
             context.startService(serviceIntent)
-            Log.d(TAG, "startToastJob() called with: context = $context, counter = $counter")
+            Log.d(TAG, "startService() called with: context = $context, counter = $counter")
         }
     }
 
@@ -46,7 +46,7 @@ class SysIntentService : IntentService("SysIntentService") {
             else -> {
                 for (i in 1..counter!!) {
                     Handler(Looper.getMainLooper()).post {
-                        Toast.makeText(this, "$i", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "$i -- $TAG", Toast.LENGTH_SHORT).show()
                     }
                     Thread.sleep(1_000)
                 }
